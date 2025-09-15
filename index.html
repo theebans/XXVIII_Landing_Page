@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XXVIII</title>
+
+<!-- Favicon -->
+<link rel="icon" href="favicon1.ico" type="image/x-icon">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" rel="stylesheet">
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  /* Splash Page */
+  #splash {
+    position: fixed;
+    top:0; left:0;
+    width:100%;
+    height:100vh;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    transition: opacity 0.8s ease;
+  }
+
+  #splash.fade { opacity:0; }
+
+  /* Splash Logo animation */
+  #splash img {
+    width:150px;
+    height:auto;
+    opacity:0;
+    transform: scale(0.8);
+    animation: logoIn 2s ease-out forwards;
+  }
+
+  @keyframes logoIn {
+    0% { opacity:0; transform: scale(0.8); }
+    100% { opacity:1; transform: scale(1); }
+  }
+
+  /* Main Website */
+  body {
+    display:flex;
+    min-height:100vh;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Cascadia Mono', monospace;
+    color:white;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background_image.jpeg') no-repeat center center/cover;
+  }
+
+  .container { max-width:90%; }
+
+  h1 {
+    font-family:'Lexend Zetta', sans-serif;
+    font-weight: 500;
+    font-size:3rem;
+    margin-bottom:30px;
+    padding:15px 30px;
+    border-radius:10px;
+    text-shadow:2px 2px 15px rgba(0,0,0,0.7);
+    opacity:0; /* hidden until animated */
+  }
+
+  a.ebay-link {
+    display:inline-block;
+    padding:18px 40px;
+    font-size:1.5rem;
+    color:white;
+    text-decoration:none;
+    background-color:rgba(255,255,255,0.1);
+    border:2px solid white;
+    border-radius:50px;
+    transition:all 0.3s ease;
+    opacity:0; /* hidden until animated */
+  }
+  a.ebay-link:hover { background-color:rgba(255,255,255,0.3); transform:scale(1.05); }
+
+  .social-links {
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    opacity:0; /* hidden until animated */
+  }
+
+  .social-links a img {
+    width:40px;
+    height:40px;
+    transition: transform 0.3s ease;
+  }
+
+  .social-links a:hover img { transform:scale(1.1); }
+
+  @keyframes fadeUp { 0% {opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
+
+  @media (max-width:768px) {
+    h1 { font-size:2.5rem; padding:12px 25px; }
+    a.ebay-link { font-size:1.2rem; padding:15px 30px; }
+    .social-links a img { width:35px; height:35px; }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="splash">
+  <img src="logo.png" alt="LDX Logo">
+</div>
+
+<div class="container">
+  <h1></h1>
+  <a class="ebay-link" href="https://www.harrods.com/en-gb/designers/balenciaga" target="_blank">Members Exclusive</a>
+  <div class="social-links">
+    <a href="https://www.instagram.com/harrods/" target="_blank"><img src="Insta_Logo.png" alt="Instagram"></a>
+    <a href="https://x.com/harrods" target="_blank"><img src="X_Logo.png" alt="X / Twitter"></a>
+  </div>
+</div>
+
+<script>
+window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+  const h1 = document.querySelector("h1");
+  const ebay = document.querySelector(".ebay-link");
+  const socialLinks = document.querySelector(".social-links");
+
+  // Keep splash visible for logo animation
+  setTimeout(() => {
+    splash.classList.add("fade");
+
+    setTimeout(() => {
+      splash.style.display = "none";
+
+      // Animate h1 and eBay button
+      h1.style.animation = "fadeUp 2s ease-out forwards";
+      ebay.style.animation = "fadeUp 2.5s ease-out forwards";
+
+      // Animate social-links container together after eBay
+      setTimeout(() => {
+        socialLinks.style.animation = "fadeUp 2s ease-out forwards";
+      }, 900); // after eBay button finishes
+    }, 800); // splash fade duration
+  }, 2200); // splash duration (matches logo animation)
+});
+</script>
+</body>
+</html>
