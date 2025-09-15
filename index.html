@@ -49,14 +49,17 @@
     min-height:100vh;
     width:100%;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     text-align:center;
     font-family:'Cascadia Mono', monospace;
     color:white;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background_image.jpeg') no-repeat center center/cover;
   }
 
-  .container { max-width:90%; }
+  .container {
+    margin-top: 75vh;        /* 75% of the viewport height */
+    transform: translateY(-50%); /* pull it back up half its own height */
+  }
 
   h1 {
     font-family:'Lexend Zetta', sans-serif;
